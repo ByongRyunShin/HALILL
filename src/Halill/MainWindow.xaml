@@ -1,0 +1,46 @@
+<Window x:Class="Halill.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="HALILL · Google Calendar" Width="680" Height="980" MinWidth="620" MinHeight="940" WindowStyle="None" ResizeMode="CanResizeWithGrip" Background="#F8F9F5" FontFamily="맑은 고딕" Foreground="{StaticResource Ink}" WindowStartupLocation="CenterScreen">
+  <shell:WindowChrome.WindowChrome>
+    <shell:WindowChrome CaptionHeight="72" ResizeBorderThickness="6" GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False"/>
+  </shell:WindowChrome.WindowChrome>
+  <Border BorderBrush="#DCE3D7" BorderThickness="1" Padding="16,12,16,12">
+    <Grid>
+      <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+      <Border Grid.Row="0" BorderBrush="#DCE3D7" BorderThickness="0,0,0,1" Padding="0,0,0,6" Margin="0,0,0,8" SnapsToDevicePixels="True">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-6,0,0" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+        <Button x:Name="PinButton" Content="고정" Click="TogglePin" ToolTip="항상 위에 표시" Padding="8,3" Margin="0,0,5,0"/>
+        <Button Content="−" Click="MinimizeWindow" ToolTip="최소화" Padding="9,3" Margin="0,0,5,0"/>
+        <Button Content="×" Click="CloseWindow" ToolTip="종료" Padding="9,3"/>
+      </StackPanel>
+      </Border>
+      <Grid Grid.Row="1" Margin="0,0,0,8" Background="Transparent" ToolTip="상단 영역을 드래그하여 창 이동">
+        <StackPanel><TextBlock x:Name="MonthTitle" FontSize="24" FontWeight="SemiBold"/><TextBlock x:Name="MonthSubtitle" FontSize="11" Foreground="#7B887C" Margin="0,3,0,0"/></StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+          <StackPanel x:Name="Navigation" Orientation="Horizontal" Margin="0,0,12,0">
+          <Button Content="‹" Click="PreviousMonth" Padding="10,6"/><Button Content="오늘" Click="GoToday" Padding="9,6" Margin="5,0"/><Button Content="›" Click="NextMonth" Padding="10,6"/>
+          </StackPanel>
+        </StackPanel>
+      </Grid>
+      <UniformGrid Grid.Row="2" Rows="1" Columns="7" Margin="0,0,0,7">
+        <TextBlock Text="일" Foreground="#BA705F" HorizontalAlignment="Center"/><TextBlock Text="월" HorizontalAlignment="Center"/><TextBlock Text="화" HorizontalAlignment="Center"/><TextBlock Text="수" HorizontalAlignment="Center"/><TextBlock Text="목" HorizontalAlignment="Center"/><TextBlock Text="금" HorizontalAlignment="Center"/><TextBlock Text="토" Foreground="#6A88A0" HorizontalAlignment="Center"/>
+      </UniformGrid>
+      <UniformGrid Grid.Row="3" x:Name="DaysGrid" Rows="6" Columns="7" Height="468"/>
+      <Border Grid.Row="4" Height="1" Background="#E1E6DC" Margin="0,8,0,8"/>
+      <Grid Grid.Row="5" Margin="0,0,0,8">
+        <TextBlock x:Name="SelectedDayTitle" FontSize="15" FontWeight="SemiBold"/>
+        <TextBlock x:Name="EventCount" HorizontalAlignment="Right" Foreground="#7B887C" FontSize="12"/>
+      </Grid>
+      <ScrollViewer Grid.Row="6" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><StackPanel x:Name="AgendaPanel"/></ScrollViewer>
+      <StackPanel Grid.Row="7" Margin="0,8,0,0">
+        <Button x:Name="CancelLoginButton" Content="로그인 취소" Click="CancelLogin" Visibility="Collapsed" Margin="0,0,0,10"/>
+        <ComboBox x:Name="CalendarPicker" Visibility="Collapsed" Margin="0,0,0,10" Padding="6" SelectionChanged="CalendarChanged"/>
+        <Border Background="#EDF1EA" CornerRadius="8" Padding="10,8" Margin="0,0,0,10"><TextBlock x:Name="StatusText" Text="샘플 일정 · Google 계정을 연결해 보세요" TextWrapping="Wrap" FontSize="11" Foreground="#62735F"/></Border>
+        <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+          <Button x:Name="ConnectButton" Content="Google 캘린더 연결" Background="#2E5544" Foreground="White" Click="ConnectGoogle"/>
+          <Button x:Name="RefreshButton" Grid.Column="1" Content="↻" FontSize="17" ToolTip="새로고침" Margin="8,0,0,0" Click="RefreshClicked"/>
+          <Button x:Name="DisconnectButton" Grid.Column="2" Content="해제" ToolTip="이 PC에 저장된 연결 정보 삭제" Margin="8,0,0,0" Visibility="Collapsed" Click="DisconnectGoogle"/>
+        </Grid>
+      </StackPanel>
+    </Grid>
+  </Border>
+</Window>

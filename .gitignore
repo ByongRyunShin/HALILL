@@ -1,0 +1,9 @@
+.tools/
+**/bin/
+**/obj/
+artifacts/
+.vs/
+*.user
+client_secret*.json
+credentials*.json
+GoogleOAuthClient.local.xml

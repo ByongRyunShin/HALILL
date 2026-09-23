@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Developer only: copy to GoogleOAuthClient.local.xml and enter the Desktop OAuth client registration. -->
+<GoogleOAuthClient>
+  <ClientId></ClientId>
+  <ClientSecret></ClientSecret>
+</GoogleOAuthClient>
